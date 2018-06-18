@@ -41,7 +41,7 @@ versions of Tor see [Section 3](#3-automatically-listen-on-tor).*
 
 	HiddenServiceDir /var/lib/tor/bitcoin-service/
 	HiddenServicePort 8877 127.0.0.1:8877
-	HiddenServicePort 18333 127.0.0.1:18333
+	HiddenServicePort 18877 127.0.0.1:18877
 
 The directory can be different of course, but (both) port numbers should be equal to
 your bitcoind's P2P listen port (8877 by default).
