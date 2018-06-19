@@ -106,10 +106,10 @@ static int AppInitRPC(int argc, char* argv[])
         std::string strUsage = strprintf("%s RPC client version", PACKAGE_NAME) + " " + FormatFullVersion() + "\n";
         if (!gArgs.IsArgSet("-version")) {
             strUsage += "\nUsage:\n"
-                  "  bitcoin-cli [options] <command> [params]  " + strprintf("Send command to %s", PACKAGE_NAME) + "\n" +
-                  "  bitcoin-cli [options] -named <command> [name=value] ... " + strprintf("Send command to %s (with named arguments)", PACKAGE_NAME) + "\n" +
-                  "  bitcoin-cli [options] help                List commands\n" +
-                  "  bitcoin-cli [options] help <command>      Get help for a command\n";
+                  "  susucoin-cli [options] <command> [params]  " + strprintf("Send command to %s", PACKAGE_NAME) + "\n" +
+                  "  susucoin-cli [options] -named <command> [name=value] ... " + strprintf("Send command to %s (with named arguments)", PACKAGE_NAME) + "\n" +
+                  "  susucoin-cli [options] help                List commands\n" +
+                  "  susucoin-cli [options] help <command>      Get help for a command\n";
 
             strUsage += "\n" + gArgs.GetHelpMessage();
         }

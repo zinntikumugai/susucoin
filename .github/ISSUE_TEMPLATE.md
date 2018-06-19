@@ -1,6 +1,6 @@
 <!-- This issue tracker is only for technical issues related to Susucoin Core.
 
-General susucoin questions and/or support requests are best directed to the Susucoin StackExchange at https://susucoin.stackexchange.com.
+General susucoin questions and/or support requests are best directed to the Susucoin StackExchange at https://susukino.com.
 
 For reporting security issues, please read instructions at https://susucoincore.org/en/contact/.
 

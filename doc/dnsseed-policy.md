@@ -44,11 +44,11 @@ related to the DNS seed operation.
 If these expectations cannot be satisfied the operator should
 discontinue providing services and contact the active Susucoin
 Core development team as well as posting on
-[susucoin-dev](https://lists.linuxfoundation.org/mailman/listinfo/susucoin-dev).
+[bitcoin-dev](https://lists.linuxfoundation.org/mailman/listinfo/bitcoin-dev).
 
 Behavior outside of these expectations may be reasonable in some
 situations but should be discussed in public in advance.
 
 See also
 ----------
-- [susucoin-seeder](https://github.com/sipa/susucoin-seeder) is a reference implementation of a DNS seed.
+- [bitcoin-seeder](https://github.com/sipa/bitcoin-seeder) is a reference implementation of a DNS seed.

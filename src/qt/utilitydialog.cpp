@@ -71,7 +71,7 @@ HelpMessageDialog::HelpMessageDialog(interfaces::Node& node, QWidget *parent, bo
     } else {
         setWindowTitle(tr("Command-line options"));
         QString header = "Usage:\n"
-            "  bitcoin-qt [command-line options]                     \n";
+            "  susucoin-qt [command-line options]                     \n";
         QTextCursor cursor(ui->helpMessage->document());
         cursor.insertText(version);
         cursor.insertBlock();

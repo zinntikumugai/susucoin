@@ -45,7 +45,7 @@ Build Susucoin Core
 
 1. Clone the susucoin source code and cd into `susucoin`
 
-        git clone https://github.com/susucoin/susucoin
+        git clone https://github.com/susucoin-project/susucoin
         cd susucoin
 
 2.  Build susucoin-core:
@@ -95,4 +95,4 @@ Notes
 
 * Tested on OS X 10.8 Mountain Lion through macOS 10.13 High Sierra on 64-bit Intel processors only.
 
-* Building with downloaded Qt binaries is not officially supported. See the notes in [#7714](https://github.com/susucoin/susucoin/issues/7714)
+* Building with downloaded Qt binaries is not officially supported. See the notes in [#7714](https://github.com/bitcoin/bitcoin/issues/7714)
