@@ -6,9 +6,6 @@
 #include <chainparams.h>
 #include <consensus/merkle.h>
 
-#include <pow.h>
-#include <pow.cpp>
-
 #include <tinyformat.h>
 #include <util.h>
 #include <utilstrencodings.h>
