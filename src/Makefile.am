@@ -423,7 +423,7 @@ susucoind_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 susucoind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-susucoind_SOURCES += susucoind-res.rc
+susucoind_SOURCES += bitcoind-res.rc
 endif
 
 susucoind_LDADD = \
