@@ -19,10 +19,10 @@ from binascii import b2a_hex
 
 # key types
 PUBKEY_ADDRESS = 63
-SCRIPT_ADDRESS = 68
+SCRIPT_ADDRESS = 5
 PUBKEY_ADDRESS_TEST = 114
 SCRIPT_ADDRESS_TEST = 192
-PRIVKEY = 60
+PRIVKEY = 128
 PRIVKEY_TEST = 231
 
 metadata_keys = ['isPrivkey', 'isTestnet', 'addrType', 'isCompressed']
