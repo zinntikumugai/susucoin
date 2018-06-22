@@ -55,7 +55,7 @@ static UniValue GetNetworkHashPS(int lookup, int height) {
 
     // If lookup is nonpositive, then use difficulty averaging window.
     if (lookup <= 0)
-      lookup = pb->nHeight - Params().GetConsensus().nPowAveragingWindow;
+      lookup = pb->nHeight - Params().GetConsensus().nZawyLwmaAveragingWindow;
 
     // If lookup is still nonpositive, or is larger than chain, then set it to
     // chain length.

@@ -11,6 +11,38 @@
 #include <uint256.h>
 #include <util.h>
 
+
+unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, const Consensus::Params& params)
+{   
+    const int64_t FTL = MAX_FUTURE_BLOCK_TIME;
+    const int64_t T = params.nPowTargetSpacing;
+    const int64_t N = params.nZawyLwmaAveragingWindow; 
+    const int64_t k = N*(N+1)*T/2; 
+    const int height = pindexLast->nHeight;
+    assert(height > N);
+
+    arith_uint256 sum_target;
+    int64_t t = 0, j = 0, solvetime;
+
+    // Loop through N most recent blocks. 
+    for (int i = height - N+1; i <= height; i++) {
+        const CBlockIndex* block = pindexLast->GetAncestor(i);
+        const CBlockIndex* block_Prev = block->GetAncestor(i - 1);
+        solvetime = block->GetBlockTime() - block_Prev->GetBlockTime();
+        solvetime = std::max(-FTL, std::min(solvetime, 6*T));
+        j++;
+        t += solvetime * j;  // Weighted solvetime sum.
+        arith_uint256 target;
+        target.SetCompact(block->nBits);
+        sum_target += target / (k * N);
+    }
+    // Keep t reasonable to >= 1/10 of expected t.
+    if (t < k/10 ) {   t = k/10;  }
+    arith_uint256 next_target = t * sum_target;
+
+    return next_target.GetCompact();
+}
+
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
 {
     assert(pindexLast != nullptr);
@@ -27,47 +59,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
         }
     }
 
-    const CBlockIndex* pindexFirst = pindexLast;
-    for (int i = 0; pindexFirst && i < params.nPowAveragingWindow; i++) {
-      pindexFirst = pindexFirst->pprev;
-    }
-    // Check we have enough blocks
-    if (pindexFirst == NULL)
-      return nProofOfWorkLimit;
-
-    return CalculateNextWorkRequired(pindexLast, pindexFirst->GetMedianTimePast(), params);
-}
-
-unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params)
-{
-    if (params.fPowNoRetargeting)
-        return pindexLast->nBits;
-
-    // Limit adjustment step
-    // Use medians to prevent time-warp attacks
-    int64_t nActualTimespan = pindexLast->GetMedianTimePast() - nFirstBlockTime;
-    LogPrintf("  nActualTimespan = %d  before dampening\n", nActualTimespan);
-    nActualTimespan = params.AveragingWindowTimespan() + (nActualTimespan - params.AveragingWindowTimespan())/4;
-    LogPrintf("  nActualTimespan = %d  before bounds\n", nActualTimespan);
-
-    // Retarget
-    const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);
-    arith_uint256 bnNew;
-    arith_uint256 bnOld;
-    bnNew.SetCompact(pindexLast->nBits);
-    bnOld = bnNew;
-    bnNew /= params.AveragingWindowTimespan();
-    bnNew *= nActualTimespan;
-
-    if (bnNew > bnPowLimit)
-        bnNew = bnPowLimit;
-
-    LogPrintf("GetNextWorkRequired RETARGET\n");
-    LogPrintf("params.AveragingWindowTimespan() = %d    nActualTimespan = %d\n", params.AveragingWindowTimespan(), nActualTimespan);
-    LogPrintf("Before: %08x  %s\n", pindexLast->nBits, bnOld.ToString());
-    LogPrintf("After:  %08x  %s\n", bnNew.GetCompact(), bnNew.ToString());
-
-    return bnNew.GetCompact();
+    return LwmaCalculateNextWorkRequired(pindexLast, params);
 }
 
 bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params& params)
@@ -88,3 +80,5 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params&
 
     return true;
 }
+
+
