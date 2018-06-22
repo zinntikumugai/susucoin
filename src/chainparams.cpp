@@ -153,8 +153,8 @@ public:
             0.0         // * estimated number of transactions per second after that timestamp
         };
 
-        /* disable fallback fee on mainnet */
-        m_fallback_fee_enabled = false;
+        /* enable fallback fee on mainnet */
+        m_fallback_fee_enabled = true;
     }
 };
 
