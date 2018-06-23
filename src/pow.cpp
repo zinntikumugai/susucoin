@@ -109,13 +109,13 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
         return nProofOfWorkLimit;
     }
 
-    // Use digishield for the first N blocks
     if (nHeight <= N) {
+      // Use digishield for the first N blocks
       return DigishieldGetNextWorkRequired(pindexLast, pblock, params);
+    } else {
+      // Softfork to use LWMA after nHeight is greater than N
+      return LwmaCalculateNextWorkRequired(pindexLast, params);
     }
-
-    // Use LWMA after nHeight is greater than N
-    return LwmaCalculateNextWorkRequired(pindexLast, params);
 }
 
 
