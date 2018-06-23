@@ -70,6 +70,8 @@ struct Params {
     uint256 powLimit;
     bool fPowAllowMinDifficultyBlocks;
     bool fPowNoRetargeting;
+    int64_t DigishieldAveragingWindowTimespan() const { return nPowAveragingWindow * nPowTargetSpacing; }
+    int64_t nPowAveragingWindow;
     int64_t nPowTargetSpacing;
     int64_t nZawyLwmaAveragingWindow;
 
