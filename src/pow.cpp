@@ -115,7 +115,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
       if (height < 500) { // give us time to ramp up to full power
         lwma = LwmaCalculateNextWorkRequired(pindexLast, params);
         digishield = DigishieldGetNextWorkRequired(pindexLast, pblock, params);
-        if (lwma > digishield) {
+        if (lwma < digishield) {
           return lwma;
         } else {
           return digishield;
