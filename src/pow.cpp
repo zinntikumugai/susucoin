@@ -97,7 +97,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 {
     assert(pindexLast != nullptr);
     unsigned int nProofOfWorkLimit = UintToArith256(params.powLimit).GetCompact();
-    int nHeight = pindexLast->nHeight + 1;
+    int height = pindexLast->nHeight;
     const int64_t N = params.nZawyLwmaAveragingWindow;
 
     if (params.fPowAllowMinDifficultyBlocks)
@@ -109,12 +109,12 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
         return nProofOfWorkLimit;
     }
 
-    if (nHeight <= N) {
+    if (height > N) {
+      // Softfork to use LWMA after height is greater than N
+      return LwmaCalculateNextWorkRequired(pindexLast, params);
+    } else {
       // Use digishield for the first N blocks
       return DigishieldGetNextWorkRequired(pindexLast, pblock, params);
-    } else {
-      // Softfork to use LWMA after nHeight is greater than N
-      return LwmaCalculateNextWorkRequired(pindexLast, params);
     }
 }
 
