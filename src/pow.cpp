@@ -107,26 +107,33 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
       // Special difficulty rule for testnet:
       // If the new block's timestamp is more than 2* 10 minutes
       // then allow mining of a min-difficulty block.
-      if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing*2)
+      if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing*2){
+        // LogPrintf("POW = %d \t[min-difficulty]\n", nProofOfWorkLimit);
         return nProofOfWorkLimit;
+      }
     }
-
     if (height > N) {
       if (height < 500) { // give us time to ramp up to full power
         lwma = LwmaCalculateNextWorkRequired(pindexLast, params);
         digishield = DigishieldGetNextWorkRequired(pindexLast, pblock, params);
         if (lwma < digishield) {
+          // LogPrintf("POW = %d \t[lwma(1)]\t| Rejected = %d\n", lwma, digishield);
           return lwma;
         } else {
+          // LogPrintf("POW = %d \t[digishield(1)]\t| Rejected = %d\n", digishield, lwma);
           return digishield;
         }
       } else {
         // Softfork to use LWMA after height is greater than N
-        return LwmaCalculateNextWorkRequired(pindexLast, params);
+        lwma = LwmaCalculateNextWorkRequired(pindexLast, params);
+        // LogPrintf("POW = %d \t[lwma(2)]\n", lwma);
+        return lwma;
       }
     } else {
       // Use digishield for the first N blocks
-      return DigishieldGetNextWorkRequired(pindexLast, pblock, params);
+      digishield = DigishieldGetNextWorkRequired(pindexLast, pblock, params);
+      // LogPrintf("POW = %d \t[digishield(2)]\n", digishield);
+      return digishield;
     }
 }
 
