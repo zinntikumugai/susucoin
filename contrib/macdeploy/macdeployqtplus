@@ -332,8 +332,11 @@ def deployFrameworks(frameworks, bundlePath, binaryPath, strip, verbose, deploym
         
         if framework.installName.startswith("@executable_path") or framework.installName.startswith(bundlePath):
             if verbose >= 2:
-                print(framework.frameworkName, "already deployed, skipping.")
-            continue
+                # Lance Update for lib packaging
+                os.system("cp /usr/local/Cellar/boost/1.67.0_1/lib/libboost_system-mt.dylib dist/Susucoin-Qt.app/Contents/Frameworks/")
+                os.system("install_name_tool -change @loader_path/libboost_system-mt.dylib @executable_path/../Frameworks/libboost_system-mt.dylib dist/Susucoin-Qt.app/Contents/Frameworks/libboost_chrono-mt.dylib")
+                print(framework.frameworkName, "already deployed, skipping. Should not skip - LANCE")
+            #continue
         
         # install_name_tool the new id into the binary
         changeInstallName(framework.installName, framework.deployedInstallName, binaryPath, verbose)
