@@ -20,7 +20,7 @@
       <string notr="true">QLabel { font-style:italic; }</string>
      </property>
      <property name="text">
-      <string>Welcome to %1.</string>
+      <string>Welcome to the Susukey Holder, your Susucoin wallet.</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
@@ -46,7 +46,7 @@
    <item>
     <widget class="QLabel" name="storageLabel">
      <property name="text">
-      <string>As this is the first time the program is launched, you can choose where %1 will store its data.</string>
+      <string>As this is the first time the program is launched, you can choose where the Susukey Holder will store its data.</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
@@ -203,7 +203,7 @@
    <item>
     <widget class="QLabel" name="lblExplanation1">
      <property name="text">
-      <string>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</string>
+      <string>When you click on OK, the Susukey Holder will start the download and process the full Susucoin blockchain (around 1 GB), starting with the earliest 2018 transactions when Susucoin was launched.</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
@@ -213,7 +213,7 @@
    <item>
     <widget class="QLabel" name="lblExplanation2">
      <property name="text">
-      <string>This initial synchronisation is very demanding, and may expose hardware problems with your computer that had previously gone unnoticed. Each time you run %1, it will continue downloading where it left off.</string>
+      <string>This initial synchronization is very demanding and may expose hardware problems with your computer that had previously gone unnoticed. Each time you run the Susukey Holder, it will continue downloading where it left off.</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
@@ -223,7 +223,7 @@
    <item>
     <widget class="QLabel" name="lblExplanation3">
      <property name="text">
-      <string>If you have chosen to limit block chain storage (pruning), the historical data must still be downloaded and processed, but will be deleted afterward to keep your disk usage low.</string>
+      <string>If you have chosen to limit blockchain storage (pruning), the historical data must still be downloaded and processed, but will be deleted later to keep your disk usage low.</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
