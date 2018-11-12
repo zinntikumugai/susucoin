@@ -18,6 +18,16 @@
 #include <rpc/register.h>
 #include <script/sigcache.h>
 
+/*
+ * Move the ECC setup and tear down into it's own globar RAII object.
+ * This fixes a lot of memory reference errors on OS X, at least.
+ */
+class CEccSetup {
+public:
+	CEccSetup() { ECC_Start(); }
+	~CEccSetup() { ECC_Stop(); }
+} eccSetup;
+
 void CConnmanTest::AddNode(CNode& node)
 {
     LOCK(g_connman->cs_vNodes);
@@ -49,7 +59,6 @@ BasicTestingSetup::BasicTestingSetup(const std::string& chainName)
 {
         SHA256AutoDetect();
         RandomInit();
-        ECC_Start();
         SetupEnvironment();
         SetupNetworking();
         InitSignatureCache();
@@ -61,7 +70,6 @@ BasicTestingSetup::BasicTestingSetup(const std::string& chainName)
 
 BasicTestingSetup::~BasicTestingSetup()
 {
-        ECC_Stop();
 }
 
 TestingSetup::TestingSetup(const std::string& chainName) : BasicTestingSetup(chainName)
