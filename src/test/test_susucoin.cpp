@@ -19,7 +19,7 @@
 #include <script/sigcache.h>
 
 /*
- * Move the ECC setup and tear down into it's own globar RAII object.
+ * Move the ECC setup and tear down into it's own global RAII object.
  * This fixes a lot of memory reference errors on OS X, at least.
  */
 class CEccSetup {
