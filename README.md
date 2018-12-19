@@ -3,7 +3,7 @@ Susucoin Core integration/staging tree
 
 [![Build Status](https://travis-ci.org/susucoin/susucoin.svg?branch=master)](https://travis-ci.org/susucoin/susucoin)
 
-https://susucoincore.org
+https://susukino.com/
 
 What is Susucoin?
 ----------------
@@ -15,8 +15,8 @@ out collectively by the network. Susucoin Core is the name of open source
 software which enables the use of this currency.
 
 For more information, as well as an immediately useable, binary version of
-the Susucoin Core software, see https://susucoin.org/en/download, or read the
-[original whitepaper](https://susucoincore.org/susucoin.pdf).
+the Susucoin Core software, see https://susukino.com/#download , or read the
+[original whitepaper](https://susukino.com/susucoin-whitepaper.pdf).
 
 License
 -------
