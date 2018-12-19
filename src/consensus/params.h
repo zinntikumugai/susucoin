@@ -74,6 +74,7 @@ struct Params {
     int64_t nPowAveragingWindow;
     int64_t nPowTargetSpacing;
     int64_t nZawyLwmaAveragingWindow;
+    int nLwma3Hardfork;
 
     uint256 nMinimumChainWork;
     uint256 defaultAssumeValid;

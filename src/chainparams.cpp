@@ -82,6 +82,7 @@ public:
         consensus.BIP66Height = 0;
         consensus.powLimit = uint256S("000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nZawyLwmaAveragingWindow = 60;
+        consensus.nLwma3Hardfork=125900;
         consensus.nPowAveragingWindow = 17;
         consensus.nPowTargetSpacing = 120; // 2 minute blocks
         consensus.fPowAllowMinDifficultyBlocks = false;
@@ -178,6 +179,7 @@ public:
         consensus.BIP66Height = 0; 
         consensus.powLimit = uint256S("000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nZawyLwmaAveragingWindow = 60;
+        consensus.nLwma3Hardfork=17080;
         consensus.nPowAveragingWindow = 17;
         consensus.nPowTargetSpacing = 120;
         consensus.fPowAllowMinDifficultyBlocks = true;
@@ -267,6 +269,7 @@ public:
         consensus.BIP66Height = 1251; // BIP66 activated on regtest (Used in rpc activation tests)
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nZawyLwmaAveragingWindow = 60;
+        consensus.nLwma3Hardfork=1000;
         consensus.nPowAveragingWindow = 17;
         consensus.nPowTargetSpacing = 120;
         consensus.fPowAllowMinDifficultyBlocks = true;
