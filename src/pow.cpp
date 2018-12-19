@@ -161,8 +161,8 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
         // LogPrintf("POW = %d \t[min-difficulty]\n", nProofOfWorkLimit);
         return nProofOfWorkLimit;
       } else if (height >= 17080) {
-        // Hardfork testnet to lwma3 from block 17080
-        return Lwma3CalculateNextWorkRequired(pindexLast, params);
+        // Hardfork testnet to lwma1 from block 17080
+        return Lwma3CalculateNextWorkRequired(pindexLast, params, false);
       }
     }
     if (height > N) {
